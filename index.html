@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>VIVA AI — Sua vida mais fácil</title>
+
+  <meta
+    name="description"
+    content="VIVA AI é uma assistente pessoal com inteligência artificial para organização, produtividade, tarefas e recursos inteligentes."
+  />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top, #09235a 0%, #020814 38%, #01040a 100%);
+      color: #ffffff;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(1, 6, 16, 0.82);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(66, 184, 255, 0.15);
+    }
+
+    nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 23px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #0b65ff, #00d9ff);
+      box-shadow: 0 0 30px rgba(0, 190, 255, 0.45);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      color: #b8c8e8;
+      font-size: 14px;
+    }
+
+    .hero {
+      min-height: 78vh;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      padding: 90px 0 70px;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .badge {
+      display: inline-block;
+      border: 1px solid rgba(0, 213, 255, 0.35);
+      background: rgba(0, 174, 255, 0.08);
+      color: #68ddff;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 25px;
+    }
+
+    h1 {
+      font-size: clamp(48px, 9vw, 88px);
+      line-height: 1;
+      letter-spacing: -4px;
+      margin-bottom: 22px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #ffffff, #6adfff, #2783ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero h2 {
+      font-size: clamp(22px, 4vw, 38px);
+      margin-bottom: 18px;
+      font-weight: 700;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: 0 auto 34px;
+      color: #aabbd9;
+      font-size: 18px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 15px 26px;
+      border-radius: 14px;
+      font-weight: 800;
+      transition: 0.2s ease;
+    }
+
+    .button-primary {
+      background: linear-gradient(135deg, #126cff, #00c8ff);
+      box-shadow: 0 10px 35px rgba(0, 139, 255, 0.3);
+    }
+
+    .button-secondary {
+      border: 1px solid #27466f;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    section {
+      padding: 85px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(30px, 5vw, 48px);
+      margin-bottom: 12px;
+    }
+
+    .section-title p {
+      color: #91a6c9;
+      max-width: 680px;
+      margin: auto;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      padding: 28px;
+      border-radius: 22px;
+      border: 1px solid rgba(70, 167, 255, 0.16);
+      background:
+        linear-gradient(
+          145deg,
+          rgba(12, 35, 75, 0.65),
+          rgba(4, 13, 30, 0.72)
+        );
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+    }
+
+    .icon {
+      font-size: 30px;
+      margin-bottom: 18px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    .card p {
+      color: #9eb0cf;
+      font-size: 15px;
+    }
+
+    .premium {
+      max-width: 700px;
+      margin: auto;
+      text-align: center;
+      border: 1px solid rgba(0, 211, 255, 0.35);
+      background:
+        radial-gradient(circle at top, rgba(0, 143, 255, 0.2), transparent 55%),
+        rgba(4, 15, 35, 0.88);
+      border-radius: 30px;
+      padding: 48px 30px;
+      box-shadow: 0 0 60px rgba(0, 137, 255, 0.12);
+    }
+
+    .premium-label {
+      color: #5bdcff;
+      font-weight: 800;
+      letter-spacing: 2px;
+      font-size: 13px;
+    }
+
+    .price {
+      font-size: 50px;
+      font-weight: 900;
+      margin: 15px 0 5px;
+    }
+
+    .month {
+      color: #91a6c9;
+      margin-bottom: 25px;
+    }
+
+    .features {
+      max-width: 440px;
+      margin: 25px auto 30px;
+      text-align: left;
+      color: #c2d0e8;
+    }
+
+    .features div {
+      padding: 8px 0;
+    }
+
+    .legal {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .legal-block {
+      margin-bottom: 24px;
+      padding: 25px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .legal-block h3 {
+      margin-bottom: 10px;
+      color: #69dcff;
+    }
+
+    .legal-block p {
+      color: #9dafca;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      padding: 45px 0;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      text-align: center;
+      color: #7084a6;
+      font-size: 13px;
+    }
+
+    .footer-brand {
+      color: white;
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 800px) {
+      .nav-links {
+        display: none;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+      <a href="#" class="brand">
+        <div class="logo">V</div>
+        VIVA AI
+      </a>
+
+      <div class="nav-links">
+        <a href="#recursos">Recursos</a>
+        <a href="#premium">Premium</a>
+        <a href="#privacidade">Privacidade</a>
+        <a href="#termos">Termos</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="container hero-content">
+
+      <div class="badge">
+        ✦ INTELIGÊNCIA ARTIFICIAL PARA SUA VIDA
+      </div>
+
+      <h1 class="gradient-text">
+        VIVA AI
+      </h1>
+
+      <h2>
+        Você vive.<br />
+        A VIVA organiza o resto.
+      </h2>
+
+      <p>
+        Uma assistente pessoal com inteligência artificial criada
+        para ajudar você a organizar tarefas, planejar sua rotina,
+        produzir conteúdo, conversar com IA e simplificar seu dia.
+      </p>
+
+      <div class="buttons">
+        <a href="#recursos" class="button button-primary">
+          CONHEÇA A VIVA
+        </a>
+
+        <a href="#premium" class="button button-secondary">
+          VIVA PREMIUM
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section id="recursos">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Uma IA para ajudar no seu dia</h2>
+        <p>
+          A VIVA reúne inteligência artificial, organização e
+          produtividade em uma experiência simples.
+        </p>
+      </div>
+
+      <div class="grid">
+
+        <div class="card">
+          <div class="icon">✦</div>
+          <h3>Converse com a VIVA</h3>
+          <p>
+            Faça perguntas, desenvolva ideias, organize informações
+            e receba ajuda através de inteligência artificial.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">✓</div>
+          <h3>Faça por Mim</h3>
+          <p>
+            Informe o resultado que deseja e a VIVA ajuda a organizar
+            as etapas e executar o que puder diretamente.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">◈</div>
+          <h3>Organização</h3>
+          <p>
+            Use a VIVA para estruturar tarefas, planos, rotinas,
+            prioridades e atividades do seu dia.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">◎</div>
+          <h3>Voz</h3>
+          <p>
+            Interaja de forma mais natural com recursos de voz
+            integrados à experiência da VIVA.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">⚡</div>
+          <h3>Produtividade</h3>
+          <p>
+            Centralize diferentes tarefas e utilize a inteligência
+            artificial para trabalhar com mais agilidade.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">◇</div>
+          <h3>Experiência Premium</h3>
+          <p>
+            Assinantes têm acesso aos recursos Premium disponibilizados
+            no aplicativo VIVA AI.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section id="premium">
+    <div class="container">
+
+      <div class="premium">
+
+        <div class="premium-label">
+          ✦ VIVA PREMIUM
+        </div>
+
+        <div class="price">
+          R$ 19,99
+        </div>
+
+        <div class="month">
+          por mês
+        </div>
+
+        <p>
+          Desbloqueie os recursos Premium da VIVA AI.
+        </p>
+
+        <div class="features">
+          <div>✓ Acesso aos recursos Premium</div>
+          <div>✓ Faça por Mim</div>
+          <div>✓ Recursos avançados de produtividade</div>
+          <div>✓ Experiência ampliada dentro do aplicativo</div>
+        </div>
+
+        <p style="font-size:13px;color:#8095b7;">
+          Assinatura recorrente mensal. O cancelamento pode ser
+          solicitado conforme as condições apresentadas no serviço.
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section id="privacidade">
+    <div class="container legal">
+
+      <div class="section-title">
+        <h2>Privacidade</h2>
+      </div>
+
+      <div class="legal-block">
+        <h3>Política de Privacidade</h3>
+
+        <p>
+          A VIVA AI utiliza informações necessárias para disponibilizar
+          seus recursos, autenticar usuários, manter o funcionamento
+          da conta e oferecer os serviços contratados.
+        </p>
+
+        <p>
+          Informações podem ser processadas por provedores tecnológicos
+          necessários ao funcionamento do serviço, incluindo serviços
+          de infraestrutura, inteligência artificial e processamento
+          de pagamentos.
+        </p>
+
+        <p>
+          Dados de pagamento são processados pelo provedor de pagamentos
+          utilizado no checkout. A VIVA AI não precisa armazenar os
+          dados completos do cartão do usuário em seus próprios sistemas.
+        </p>
+
+        <p>
+          A VIVA AI adota medidas destinadas a proteger as informações
+          utilizadas na prestação do serviço.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section id="termos">
+    <div class="container legal">
+
+      <div class="section-title">
+        <h2>Termos de Uso</h2>
+      </div>
+
+      <div class="legal-block">
+        <h3>Uso da VIVA AI</h3>
+
+        <p>
+          A VIVA AI fornece recursos baseados em inteligência artificial
+          destinados a auxiliar o usuário em tarefas, organização,
+          produtividade e geração de conteúdo.
+        </p>
+
+        <p>
+          Respostas produzidas por inteligência artificial podem conter
+          imprecisões. O usuário deve avaliar informações importantes
+          antes de tomar decisões ou utilizá-las em situações que exijam
+          precisão profissional.
+        </p>
+      </div>
+
+      <div class="legal-block">
+        <h3>VIVA Premium</h3>
+
+        <p>
+          O VIVA Premium é um serviço de assinatura que disponibiliza
+          recursos adicionais dentro da VIVA AI.
+        </p>
+
+        <p>
+          O valor atualmente apresentado para o plano é de
+          R$ 19,99 por mês. Condições e preços poderão ser atualizados
+          futuramente, respeitando as informações apresentadas ao
+          assinante e as regras aplicáveis.
+        </p>
+      </div>
+
+      <div class="legal-block">
+        <h3>Cancelamento</h3>
+
+        <p>
+          O usuário poderá solicitar o cancelamento de sua assinatura.
+          Quando aplicável, o acesso permanecerá disponível de acordo
+          com o período já contratado e com as condições informadas no
+          momento do cancelamento.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+
+<footer>
+  <div class="container">
+    <div class="footer-brand">VIVA AI</div>
+
+    <p>Você vive. A VIVA organiza o resto.</p>
+
+    <p style="margin-top:12px;">
+      © 2026 VIVA AI. Todos os direitos reservados.
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
